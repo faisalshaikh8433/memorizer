@@ -14,8 +14,8 @@ class MemoriesController extends Controller
      */
     public function index()
     {
+      $memories = auth()->user()->savedMemories();
       return view('memories.index', compact('memories'));
-
     }
 
     /**
@@ -25,7 +25,7 @@ class MemoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('memories.create');
     }
 
     /**

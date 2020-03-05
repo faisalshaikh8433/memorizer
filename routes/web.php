@@ -12,11 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('memories.index');
+    return view('welcome');
 });
 
 Auth::routes();
 
-Route::resource('memories', 'MemoriesController');
+Route::group(['middleware' => 'auth'], function () {
+  Route::resource('memories', 'MemoriesController');
 
-Route::get('/dashboard', 'HomeController@index')->name('dahsboard');
+  Route::get('/dashboard', 'HomeController@index')->name('dahsboard');
+});

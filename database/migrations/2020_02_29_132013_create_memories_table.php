@@ -14,14 +14,15 @@ class CreateMemoriesTable extends Migration
     public function up()
     {
         Schema::create('memories', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('user_id')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->blob('date');
-            $table->blob('image');
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
+            $table->date('date');
+            $table->binary('image');
             $table->text('description');
             $table->jsonb('details');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

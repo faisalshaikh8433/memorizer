@@ -27,8 +27,6 @@
     <main class="py-4">
       <div class="container">
         @yield('content')
-        {{$slot}}
-
       </div>
     </main>
   </div>

@@ -42,7 +42,7 @@ class User extends Authenticatable
       $this->hasMany(Memories::class);
     }
 
-    public function storedMemories()
+    public function savedMemories()
     {
         return Memories::where('user_id', $this->id)->get();
     }
