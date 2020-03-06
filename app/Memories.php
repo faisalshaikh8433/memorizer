@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Memories extends Model
 {
-  protected $guard = [];
+  protected $fillable = ['user_id', 'date', 'image', 'description', 'details'];
 
 
   public function user()
   {
-    $this->belongsTo(User::class);
+    return $this->belongsTo(User::class);
   }
 }

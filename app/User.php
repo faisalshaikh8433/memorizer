@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     public function memories()
     {
-      $this->hasMany(Memories::class);
+        return $this->hasMany(Memories::class);
     }
 
     public function savedMemories()

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Memories;
 use Illuminate\Http\Request;
+use App\Http\Requests\MemorySaveRequest;
 
 class MemoriesController extends Controller
 {
@@ -34,9 +35,16 @@ class MemoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MemorySaveRequest $request)
     {
-        //
+      $requestData = $request->all();
+      $path = $request->file('image')->getRealPath();
+      $image = file_get_contents($path);
+      $base64 = base64_encode($image);
+      $requestData['image'] = $base64;
+      auth()->user()->memories()->create($requestData);
+      
+      return redirect('/memories')->with('success','Memory Added!');
     }
 
     /**
