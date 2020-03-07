@@ -15,12 +15,9 @@
         </div>
       </div>
       <div class="card-body">
-        @forelse ($memories as $memory)
-        <div class="">
-        </div>
-        @empty
-        <div>No Memories add some...</div>
-        @endforelse
+        @include ('memories.memory_table', [
+        'memories' => $memories,
+        ])
       </div>
     </div>
   </div>
