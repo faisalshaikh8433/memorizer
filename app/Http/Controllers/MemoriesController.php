@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Memories;
+use JD\Cloudder\Facades\Cloudder;
 use Illuminate\Http\Request;
 use App\Http\Requests\MemorySaveRequest;
 
@@ -38,10 +39,12 @@ class MemoriesController extends Controller
     public function store(MemorySaveRequest $request)
     {
       $requestData = $request->all();
-      $path = $request->file('image')->getRealPath();
-      $image = file_get_contents($path);
-      $base64 = base64_encode($image);
-      $requestData['image'] = $base64;
+      $image_name = $request->file('image')->getRealPath();
+      Cloudder::upload($image_name, null);
+      $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => 250, "height"=>250]);
+      // $image = file_get_contents($path);
+      // $base64 = base64_encode($image);
+      $requestData['image'] = $image_url;
       auth()->user()->memories()->create($requestData);
       
       return redirect('/memories')->with('success','Memory Added!');
@@ -55,7 +58,9 @@ class MemoriesController extends Controller
      */
     public function show(memories $memories)
     {
-        //
+      if (Gate::allows('show-or-edit-memory', $memories)) {
+        // The current user can show the memory...
+      }
     }
 
     /**
@@ -66,7 +71,9 @@ class MemoriesController extends Controller
      */
     public function edit(memories $memories)
     {
-        //
+      if (Gate::allows('show-or-edit-memory', $memories)) {
+        // The current user can edit the memory...
+      }
     }
 
     /**
@@ -78,7 +85,7 @@ class MemoriesController extends Controller
      */
     public function update(Request $request, memories $memories)
     {
-        //
+      
     }
 
     /**

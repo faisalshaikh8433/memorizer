@@ -13,8 +13,8 @@
             <input type="date" id="memoryDate" class="form-control" name="date" value="{{date('Y-m-d')}}">
           </div>
           <div class="form-group">
-            <label for="description" class="label-control">Description</label>
-            <textarea name="description" id="description" class="form-control" cols="0" rows="5"></textarea>
+            <label for="notes" class="label-control">Notes</label>
+            <textarea name="notes" id="notes" class="form-control" cols="0" rows="5"></textarea>
           </div>
           <div class="form-group">
             <label for="file" class="label-control">Upload a file</label>
@@ -22,9 +22,9 @@
           </div>
 
         </div>
-        {{-- <div class="card-footer">
-          <button type="submit" class="btn btn-secondary">Save</button>
-        </div> --}}
+        <div class="card-footer">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
       </form>
     </div>
   </div>

@@ -17,9 +17,9 @@ class CreateMemoriesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->date('date');
-            $table->binary('image');
-            $table->text('description');
-            $table->jsonb('details');
+            $table->text('image');
+            $table->text('notes');
+            // $table->jsonb('details');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
