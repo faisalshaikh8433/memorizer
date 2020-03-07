@@ -19,6 +19,9 @@
         'memories' => $memories,
         ])
       </div>
+      <div class="card-footer">
+        {!! $memories->links() !!}
+      </div>
     </div>
   </div>
 </div>

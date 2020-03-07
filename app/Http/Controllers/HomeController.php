@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Memories;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,7 +22,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   $memories = auth()->user()->savedMemories();
+    {   $memories = Memories::where('user_id', auth()->user()->id)->paginate(5);
         return view('home', compact('memories'));
     }
 }

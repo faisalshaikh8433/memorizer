@@ -16,16 +16,14 @@
             <label for="notes" class="label-control">Notes</label>
             <textarea name="notes" id="notes" class="form-control" cols="0" rows="5"></textarea>
           </div>
-          <div class="form-group">
-            <label for="file" class="label-control">Upload a file</label>
-            <input type="file" id="file" class="form-control border-0" name="image">
-          </div>
+          <image-input-component></image-input-component>
 
         </div>
         <div class="card-footer">
           <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
+
     </div>
   </div>
 </div>

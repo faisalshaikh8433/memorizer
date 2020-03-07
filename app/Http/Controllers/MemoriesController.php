@@ -16,7 +16,7 @@ class MemoriesController extends Controller
      */
     public function index()
     {
-      $memories = auth()->user()->savedMemories();
+      $memories = Memories::where('user_id', auth()->user()->id)->paginate(5);
       return view('memories.index', compact('memories'));
     }
 
@@ -42,8 +42,6 @@ class MemoriesController extends Controller
       $image_name = $request->file('image')->getRealPath();
       Cloudder::upload($image_name, null);
       $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => 250, "height"=>250]);
-      // $image = file_get_contents($path);
-      // $base64 = base64_encode($image);
       $requestData['image'] = $image_url;
       auth()->user()->memories()->create($requestData);
       

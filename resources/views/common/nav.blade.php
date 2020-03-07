@@ -12,9 +12,9 @@
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav mr-auto">
         @auth
-        {{-- <li class="nav-item">
-          <a class="nav-link" href="{{ route('memories.index') }}">Your Memories</a>
-        </li> --}}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url('/dashboard') }}">Dashboard</a>
+        </li>
         @endauth
       </ul>
 
