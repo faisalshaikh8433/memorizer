@@ -60,8 +60,16 @@
       text-transform: uppercase;
     }
 
+    .p-2 {
+      padding: 1rem;
+    }
+
     .m-b-md {
       margin-bottom: 30px;
+    }
+
+    ul {
+      list-style-type: none;
     }
   </style>
 </head>
@@ -85,6 +93,16 @@
     <div class="content">
       <div class="title m-b-md">
         Memorizer
+      </div>
+      <div style="font-weight: bold; font-size: 1rem">
+        <ul>
+          <li class="p-2">Want to remember dimensions of a shoe, dress or anything as a image with notes ?</li>
+          <li class="p-2">Want to save a image as a beautiful memory ?</li>
+          <li class="p-2">Memorizer will help you remember all these things.</li>
+          <li class="p-2">Just register yourself by providing
+            email id and start uploading your
+            images with notes.</li>
+        </ul>
       </div>
     </div>
   </div>
