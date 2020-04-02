@@ -25,8 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-      Gate::define('show-or-edit-memory', function ($user, $memory) {
-          return $user->id == $memory->user_id;
+      Gate::define('owns-memory', function ($user, $memory) {
+        return $user->id === $memory->user_id;
       });
     }
 }

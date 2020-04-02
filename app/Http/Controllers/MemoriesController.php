@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Memories;
+use Gate;
+use App\Memory;
 use JD\Cloudder\Facades\Cloudder;
 use Illuminate\Http\Request;
 use App\Http\Requests\MemorySaveRequest;
@@ -16,7 +17,7 @@ class MemoriesController extends Controller
      */
     public function index()
     {
-      $memories = Memories::where('user_id', auth()->user()->id)->paginate(5);
+      $memories = Memory::where('user_id', auth()->user()->id)->paginate(5);
       return view('memories.index', compact('memories'));
     }
 
@@ -51,12 +52,12 @@ class MemoriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\memories  $memories
+     * @param  \App\memory  $memory
      * @return \Illuminate\Http\Response
      */
-    public function show(memories $memories)
+    public function show(Memory $memory)
     {
-      if (Gate::allows('show-or-edit-memory', $memories)) {
+      if (Gate::allows('owns-memory', $memory)) {
         // The current user can show the memory...
       }
     }
@@ -64,12 +65,12 @@ class MemoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\memories  $memories
+     * @param  \App\memory  $memory
      * @return \Illuminate\Http\Response
      */
-    public function edit(memories $memories)
+    public function edit(Memory $memory)
     {
-      if (Gate::allows('show-or-edit-memory', $memories)) {
+      if (Gate::allows('owns-memory', $memory)) {
         // The current user can edit the memory...
       }
     }
@@ -78,10 +79,10 @@ class MemoriesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\memories  $memories
+     * @param  \App\memory  $memory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, memories $memories)
+    public function update(Request $request, Memory $memory)
     {
       
     }
@@ -89,11 +90,16 @@ class MemoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\memories  $memories
+     * @param  \App\memory  $memory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(memories $memories)
+    public function destroy(Memory $memory)
     {
-        //
+        if (Gate::allows('owns-memory', $memory)) {
+          $publicId = pathinfo($memory->image)['filename'];
+          Cloudder::destroyImage($publicId);
+          $memory->delete();
+          return redirect('/memories')->with('notice', 'Memory deleted!');
+        }
     }
 }

@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function savedMemories()
     {
-        return Memories::where('user_id', $this->id)->get();
+        return Memory::where('user_id', $this->id)->get();
     }
 }
