@@ -58,7 +58,7 @@ class MemoriesController extends Controller
     public function show(Memory $memory)
     {
       if (Gate::allows('owns-memory', $memory)) {
-        // The current user can show the memory...
+        return view('memories.show', compact('memory'));
       }
     }
 
