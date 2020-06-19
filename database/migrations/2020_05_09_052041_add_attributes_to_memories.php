@@ -14,7 +14,7 @@ class AddAttributesToMemories extends Migration
     public function up()
     {
         Schema::table('memories', function (Blueprint $table) {
-          $table->json('attributes');
+          $table->json('attributes')->nullable();
         });
     }
 
