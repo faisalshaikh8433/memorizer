@@ -16,7 +16,7 @@
             <label for="notes" class="label-control">Notes</label>
             <textarea name="notes" id="notes" class="form-control" cols="0" rows="5"></textarea>
           </div>
-          <attribute-table></attribute-table>
+          <attribute-table page="create"></attribute-table>
           <image-input-component></image-input-component>
         </div>
         <div class="card-footer">

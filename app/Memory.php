@@ -16,4 +16,17 @@ class Memory extends Model
   {
     return $this->belongsTo(User::class);
   }
+
+  public function setAttributesAttribute($value)
+  {
+      $properties = [];
+
+      foreach ($value as $array_item) {
+          if (!is_null($array_item['name'])) {
+              $properties[] = $array_item;
+          }
+      }
+
+      $this->attributes['attributes'] = json_encode($properties);
+  }
 }

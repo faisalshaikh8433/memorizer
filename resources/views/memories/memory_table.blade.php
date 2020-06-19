@@ -4,6 +4,7 @@
       <td>Date</td>
       <td>Image</td>
       <td>Notes</td>
+      <td>Attributes</td>
       <td></td>
     </tr>
   </thead>
@@ -16,7 +17,15 @@
       </td>
       <td>{{$memory->notes}}</td>
       <td>
+        @if($memory->attributes)
+        @foreach ($memory->attributes as $attribute)
+        <b>{{ $attribute['name'] }}</b>: {{ $attribute['value'] }}<br />
+        @endforeach
+        @endif
+      </td>
+      <td>
         <div class="btn-group">
+          <a href="{{route('memories.show', $memory->id)}}" class="btn btn-primary">View</a>
           <form action="{{ route('memories.destroy', $memory->id) }}" method="POST"
             onsubmit="return confirm('Are you sure you want to delete ?')">
             @method('DELETE')
