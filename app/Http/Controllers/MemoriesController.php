@@ -42,7 +42,7 @@ class MemoriesController extends Controller
       $requestData = $request->all();
       $image_name = $request->file('image')->getRealPath();
       Cloudder::upload($image_name, null);
-      $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => 250, "height"=>250]);
+      $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => 500, "height"=>500]);
       $requestData['image'] = $image_url;
       auth()->user()->memories()->create($requestData);
       

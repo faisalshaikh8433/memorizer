@@ -16,8 +16,8 @@
           <attribute-table saved-attributes={{ json_encode($memory->attributes) }} page="show">
           </attribute-table>
         </div>
-        <div class="form-group">
-          <img src="{{$memory->image}}" class="img-fluid" />
+        <div class="form-group text-center">
+          <img src="{{$memory->image}}" class="img-fluid rounded" width="50%" />
         </div>
       </div>
     </div>

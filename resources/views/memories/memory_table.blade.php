@@ -13,7 +13,7 @@
     <tr>
       <td>{{$memory->date->format('d-m-Y')}}</td>
       <td>
-        <img class="img-thumbnail" src="{{$memory->image}}" />
+        <img class="img-thumbnail" src="{{$memory->image}}" width="50%" />
       </td>
       <td>{{$memory->notes}}</td>
       <td>
